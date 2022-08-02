@@ -8,7 +8,6 @@ function [res]=ffts(data,dims,dr);
 %               dir    - direction of FFT ("1" forward, "-1" inverse)
 %
 %       by Alexey Samsonov
-%       U of W, Madison
 %       2005
 
 res=data;
