@@ -13,11 +13,9 @@ function [vals] = convmridata(vals0,cnvstr,dns,dimsn);
 %      VALS - regridded values
 %
 %   Author:
-%       Alexei Samsonov
+%       Alexey Samsonov
 %       2000-2004
-%       Scientific Computing and Imaging Institute
-%       University of Utah
-%
+
 
 dims=size(vals0);
 if (~exist('dns')|isempty(dns))
