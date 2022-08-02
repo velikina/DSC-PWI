@@ -4,7 +4,7 @@ function res=inv_mlt(f, smaps,dirs)
 %   res=inv_mlt(f, smaps,dirs)
 %
 %   Alexey Samsonov
-%   U of W, April 2005
+%   2005
 
 if ~check_var('dirs')
     tmp=ffts(f,[1 2],-1);
