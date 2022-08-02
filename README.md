@@ -1,5 +1,5 @@
 # DSC-PWI
-This folder contains code for reconstruction of undersampled MRI data using temporally constrained reconstruction with finite differences (of order 1 to 4).
+This folder contains Matlab code for reconstruction of undersampled MRI data using temporally constrained reconstruction with finite differences (of order 1 to 4). The code was tested on MATLAB R2018b.
 
 File example.m provides an example of code usage
 
