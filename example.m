@@ -1,6 +1,8 @@
 %% 
 clear
-load example_data
+load kspace_data
+load smaps
+load data_true
 [Nx,Ny,Nrcv]=size(smaps);
 [Np,Nsp,Nrcv,Nte,Nfr]=size(kdata);
 
