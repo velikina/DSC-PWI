@@ -2,13 +2,6 @@ function [pd, r2, nrsd]=levenbergT2(data, te, ig, Ni, wordy, is_paral,tol, W)
 
 % [pd, r2, nrsd]=levenbergT2(data, te, ig, Ni, wordy)
 %   
-%   INPUT:
-%   
-%   
-%   OUTPUT:
-%   
-%   
-%   
 %   by Alexey Samsonov
 %   2011
 
