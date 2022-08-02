@@ -16,7 +16,6 @@ function [kx, ky, phi] = getRadTr(npr, npts, kxmin, kxmax, ph0, phn);
 %           npr-by-npts)
 %       
 %       by Alexey Samsonov
-%           U of W, Madison
 %           2005
 
 rr = linspace(kxmin, kxmax, npts);
