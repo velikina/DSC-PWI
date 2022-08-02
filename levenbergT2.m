@@ -10,7 +10,7 @@ function [pd, r2, nrsd]=levenbergT2(data, te, ig, Ni, wordy, is_paral,tol, W)
 %   
 %   
 %   by Alexey Samsonov
-%   UW-Madison, 2011
+%   2011
 
 npts=size(data,1);
 tolLmd=1e4;
@@ -39,26 +39,11 @@ elseif numel(ig)==1 % -- linear approximation as initial guess
     ig=repmat([1 20], [npts 1]);
     iA=pinv(A);
     tolLmd=1e1;
-    if 0
-        parfor ii=1:npts
-            y=abs(data(ii,:));
-            y(y<=0)=eps;
-            tmp=iA*log(y)';
-            ig(ii,:)=[exp(tmp(1)) -tmp(2)];
-        end
-    elseif 1
-        y=abs(data);
-        y(y<=0)=eps;
-        tmp=(iA*log(y).').';
-        ig=[exp(tmp(:,1)) -tmp(:,2)];
-    else
-        %         y=(data);
-        %         y(y<=0)=eps;
-        %         tmpR=(iA*log(real(y)).').';
-        %
-        %         ig=[exp(tmp(:,1)) -tmp(:,2)];
-    end
     
+    y=abs(data);
+    y(y<=0)=eps;
+    tmp=(iA*log(y).').';
+    ig=[exp(tmp(:,1)) -tmp(:,2)];
     
     if is_cmpx && 0
         tt=ig(:,1).*exp(1i*angle(sum(data,2)));
@@ -90,21 +75,9 @@ r2=pd;
 nrsd=pd;
 nms=size(data,2);
 
-% if ~check_var('is_paral')
-%     is_paral=0;
-% end
-% 
-% isOpen=matlabpool('size')
-% if ~isOpen && is_paral
-%     matlabpool open local 12;
-% end
-% isOpen=matlabpool('size');
 pool=create_pool(24,1);
 
-parfor ii=1:npts
-    %     if wordy && ~isOpen
-    %         progressbar(ii/npts);
-    %     end
+parfor ii=1:npts    
     ww=W(ii,:);
     if is_cmpx
         y=[real(data(ii,:)).*ww imag(data(ii,:)).*ww];
@@ -176,9 +149,9 @@ parfor ii=1:npts
         dlt=pinv(a)*beta';
         b=b+dlt';
         n1=n0;
-        %                 lmd, n0,n0/n3
+       
         if n0/n3<tol || lmd>tolLmd
-            %             jj, lmd
+        
             break;
         end
     end
@@ -189,9 +162,6 @@ parfor ii=1:npts
     end
     r2(ii)=b1(2);
     nrsd(ii)=n2;
-    if jj<Ni
-%         jj, lmd
-    end
 end
 
 end
