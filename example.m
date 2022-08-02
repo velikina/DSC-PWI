@@ -1,11 +1,19 @@
 %% 
 clear
-load kspace_data
-load smaps
-load data_true
-[Nx,Ny,Nrcv]=size(smaps);
-[Np,Nsp,Nrcv,Nte,Nfr]=size(kdata);
 
+load smaps
+[Nx,Ny,Nrcv]=size(smaps);
+Nte=length(TE);
+load kspace_coords
+for m=1:Nte
+    load(['kdata_echo' num2str(m)]);
+    kdata(:,:,:,:,m)=ksp;
+end
+clear ksp
+kdata=double(permute(kdata,[1 2 3 5 4]));
+[Np,Nsp,Nrcv,Nte,Nfr]=size(kdata);
+load ims_true
+load R2star_true
 %% Set up time-resolved data
 kxt=cell(Nfr,1);
 kyt=cell(Nfr,1);
