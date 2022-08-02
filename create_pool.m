@@ -22,9 +22,6 @@ myCluster = parcluster(defaultProfile);
 
 if nw>myCluster.NumWorkers
     nw=myCluster.NumWorkers;
-    if nw>20
-        nw=20;
-    end
     disp(['Changing the supplied number of workers to max available (' num2str(nw)  ')']);
 end
 
