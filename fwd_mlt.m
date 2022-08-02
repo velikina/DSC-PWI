@@ -4,7 +4,7 @@ function res=fwd_mlt(f, smaps,dirs)
 %   
 %
 %   Alexey Samsonov
-%   U of W, April 2005
+%   2005
 Nc=size(smaps,3);
 Ns=size(f,3);
 
