@@ -29,8 +29,6 @@ function [res, wlut, B] = SetupMRIConvData(varargin);
 %   Author:
 %       Alexei Samsonov
 %       2000-2004
-%       Scientific Computing and Imaging Institute
-%       University of Utah
 %
 
 if  nargin<5
