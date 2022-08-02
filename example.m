@@ -1,6 +1,5 @@
 %% 
 clear
-
 load smaps
 [Nx,Ny,Nrcv]=size(smaps);
 Nte=length(TE);
@@ -14,6 +13,7 @@ kdata=double(permute(kdata,[1 2 3 5 4]));
 [Np,Nsp,Nrcv,Nte,Nfr]=size(kdata);
 load ims_true
 load R2star_true
+
 %% Set up time-resolved data
 kxt=cell(Nfr,1);
 kyt=cell(Nfr,1);
@@ -47,6 +47,7 @@ OPT3=OPT0;
 OPT1.TD1(1)=3; % first temporal difference constraint
 OPT2.TD2(1)=3; % second temporal difference constraint
 OPT3.TD3(1)=3; % third temporal difference constraint
+
 %% Image reconstruction
 ims_td1_l1=zeros(Nx,Ny,Nfr,Nte);
 ims_td1_l2=zeros(Nx,Ny,Nfr,Nte);
@@ -61,6 +62,7 @@ for m=1:Nte
 end
 
 %% R2* fitting
+create_pool(32,1);
 for jj=1:Nfr
     [pp,rr]=levenbergT2(selectData(sqz(abs(ims_td1_l1(:,:,jj,:))),om),TE,[],40,0,1);
     R2_td1_l1(:,:,jj)=spreadData(rr,om);
@@ -75,6 +77,7 @@ for jj=1:Nfr
     [pp,rr]=levenbergT2(selectData(sqz(abs(ims_td3_l2(:,:,jj,:))),om),TE,[],40,0,1);
     R2_td3_l2(:,:,jj)=spreadData(rr,om);
 end
+
 %% Computing rCBV 
 R2_bl=mean(R2_full(:,:,1:Nsp),3);
 rCBV=sum(abs(bsxminus(R2_full(:,:,Nsp+1:end),R2_bl)),3);
