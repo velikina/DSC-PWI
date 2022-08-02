@@ -8,8 +8,7 @@ function CC=get_KB_imspace1(krn, dims, W);
 %       of - overgridding factor
 %
 %   Alexey Samsonov
-%   Univesity of Wisconsin,Madison
-%   March 2005
+%   2005
 
 tt=zeros(floor(numel(krn)/(W)*dims(1)),1);
 tt(1:numel(krn))=krn;
