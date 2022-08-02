@@ -1,4 +1,4 @@
-function [pd, r2, nrsd]=levenbergT2(data, te, ig, Ni, wordy, is_paral,tol, W)
+function [pd, r2, nrsd]=levenbergT2(data, te, ig, Ni, wordy)
 
 % [pd, r2, nrsd]=levenbergT2(data, te, ig, Ni, wordy)
 %   
@@ -67,8 +67,6 @@ pd=zeros(npts, 1);
 r2=pd;
 nrsd=pd;
 nms=size(data,2);
-
-pool=create_pool(24,1);
 
 parfor ii=1:npts    
     ww=W(ii,:);
@@ -143,8 +141,7 @@ parfor ii=1:npts
         b=b+dlt';
         n1=n0;
        
-        if n0/n3<tol || lmd>tolLmd
-        
+        if n0/n3<tol || lmd>tolLmd   
             break;
         end
     end
