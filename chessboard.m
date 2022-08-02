@@ -8,7 +8,7 @@ function res=chessboard(dims,dr);
 if ~exist('dr','var') | isempty(dr)
     dr=[1 1];
 elseif numel(dr)==1
-    dr=[~even(dr) even(dr)];
+    dr=[~even1(dr) even1(dr)];
 end
 
 if numel(dims)==1
